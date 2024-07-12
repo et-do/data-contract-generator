@@ -1,10 +1,7 @@
 package utils
 
 import (
-	"os"
 	"testing"
-
-	"data-contract-generator/models"
 )
 
 func TestParseYAML(t *testing.T) {

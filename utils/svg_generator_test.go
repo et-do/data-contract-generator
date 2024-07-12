@@ -1,39 +1,60 @@
 package utils
 
 import (
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"my_project/models"
+	"data-contract-generator/models"
 	"os"
+	"path/filepath"
 	"testing"
+
+	"gopkg.in/yaml.v2"
 )
 
 func TestGenerateSVG(t *testing.T) {
-	data, err := ioutil.ReadFile("../testdata/test_contract.yaml")
+	// Read the test YAML file
+	data, err := os.ReadFile("../testdata/test_contract.yaml")
 	if err != nil {
 		t.Fatalf("Failed to read test data file: %v", err)
 	}
 
+	// Unmarshal the YAML data into the DataContract struct
 	var contract models.DataContract
 	err = yaml.Unmarshal(data, &contract)
 	if err != nil {
 		t.Fatalf("Failed to unmarshal YAML: %v", err)
 	}
 
+	// Generate the SVG data from the DataContract struct
 	svgData, err := GenerateSVG(&contract)
 	if err != nil {
 		t.Fatalf("Failed to generate SVG: %v", err)
 	}
 
-	tempFile, err := ioutil.TempFile("", "test*.svg")
+	// Define the output file path
+	outputFilePath := filepath.Join("../testdata", "test_contract.svg")
+
+	// Write the SVG data to the output file
+	if err := os.WriteFile(outputFilePath, svgData, 0644); err != nil {
+		t.Fatalf("Failed to write SVG data to file: %v", err)
+	}
+
+	t.Logf("SVG data written to file: %s", outputFilePath)
+
+	// Verify that the SVG file was created and has content
+	fileInfo, err := os.Stat(outputFilePath)
 	if err != nil {
-		t.Fatalf("Failed to create temp file: %v", err)
-	}
-	defer os.Remove(tempFile.Name())
-
-	if err := SaveSVG(svgData, tempFile.Name()); err != nil {
-		t.Fatalf("Failed to save SVG: %v", err)
+		t.Fatalf("Failed to get file info: %v", err)
 	}
 
-	// Further tests could include checking the content of the SVG file
+	if fileInfo.Size() == 0 {
+		t.Fatalf("SVG file is empty")
+	}
+
+	t.Logf("SVG file size: %d bytes", fileInfo.Size())
+
+	// Optionally, read and print the file content for debugging
+	svgContent, err := os.ReadFile(outputFilePath)
+	if err != nil {
+		t.Fatalf("Failed to read generated SVG file: %v", err)
+	}
+	t.Logf("Generated SVG content:\n%s", svgContent)
 }

@@ -1,13 +1,14 @@
 package utils
 
 import (
-	"io/ioutil"
-	"my_project/models"
+	"data-contract-generator/models"
+	"os"
+
 	"gopkg.in/yaml.v2"
 )
 
 func ParseYAML(filename string) (*models.DataContract, error) {
-	data, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}

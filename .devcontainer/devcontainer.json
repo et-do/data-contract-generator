@@ -15,18 +15,27 @@
                     "source.organizeImports": true
                 },
                 "go.lintTool": "golint",
-                "go.lintFlags": ["--fast"]
+                "go.lintFlags": [
+                    "--fast"
+                ]
             },
             "extensions": [
                 "golang.Go",
                 "ms-vscode.cpptools",
                 "eamodio.gitlens",
-                "premparihar.gotestexplorer",
-                "jock.svg"
+                "premparihar.gotestexplorer"
             ]
         }
     },
     "postCreateCommand": "go mod tidy",
+    "runArgs": [
+        "--init",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "-v",
+        "${localWorkspaceFolder}:/workspace"
+    ],
     "remoteUser": "root",
     "workspaceFolder": "/workspace"
 }
