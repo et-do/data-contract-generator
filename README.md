@@ -3,15 +3,53 @@
 
 A Go-based tool to convert YAML data contracts into visually appealing SVG files.
 
-## Features
+
+## Data Contracts
+
+A data contract is a formal agreement between different parties about the structure, format, and semantics of the data being exchanged. It defines how data should be produced, processed, and consumed, ensuring consistency and quality across different systems and teams.
+
+**Key Components of a Data Contract**
+- **Name**: The name of the data contract.
+- **Date**: The date the data contract was created or last updated.
+- **Data Source**: The source system or application where the data originates.
+- **Table Name**: The name of the table or dataset where the data is stored.
+- **Expected Schema**: A detailed definition of the schema, including field names and data types.
+- **Frequency**: How often the data is expected to be updated or refreshed.
+- **PII Sensitive**: Indicates whether the data contains Personally Identifiable Information (PII).
+- **Description**: A detailed description of the data and its purpose.
+- **Contact Person**: Information about the person responsible for the data.
+- **Data Retention Policy**: The policy for how long the data should be retained.
+- **Security Classification**: The security classification of the data (e.g., confidential, public).
+- **Version**: The version of the data contract.
+
+**Benefits of Data Contracts**
+- **Data Quality**: Data contracts enforce a standardized schema and data format, reducing errors and inconsistencies. This ensures that data is clean, accurate, and reliable.
+- **Pipeline Development**: With clearly defined data structures and expectations, development of data pipelines becomes more straightforward. Developers can build and maintain ETL (Extract, Transform, Load) processes with confidence that the data will adhere to the agreed-upon contract.
+- **Clear Communication**: Data contracts serve as a single source of truth, providing clear documentation and communication between different teams (e.g., data producers, data consumers, and data engineers).
+- **Compliance and Security**: By defining data retention policies and security classifications, data contracts help organizations comply with legal and regulatory requirements, and protect sensitive information.
+- **Change Management**: When data contracts include versioning, it becomes easier to manage changes over time. Teams can track updates and ensure backward compatibility.
+
+**Using Data Contracts in a Codebase**
+- **Schema Validation**: Implement automated schema validation to ensure incoming data adheres to the defined contract. This can be done using tools or libraries that compare incoming data to the expected schema and raise alerts or errors for any discrepancies.
+- **Data Ingestion**: Use data contracts to guide the ingestion process. When setting up ETL pipelines, reference the data contract to understand the schema, data types, and transformation rules required.
+- **Data Quality Checks**: Incorporate data quality checks as part of your data processing pipelines. Use the data contract to define and enforce rules for data completeness, accuracy, and consistency.
+- **Documentation and Onboarding**: Data contracts serve as comprehensive documentation for your datasets. New team members can refer to data contracts to quickly understand the structure, purpose, and usage of the data.
+- **Monitoring and Alerting**: Set up monitoring and alerting based on the data contract. For example, if the data is expected to be updated daily, set up alerts for missing or delayed updates.
+- **Version Control**: Maintain version control for data contracts. When a data contract is updated, ensure that all dependent systems and pipelines are compatible with the new version. This can help in managing breaking changes and ensuring smooth transitions.
+
+
+[Additional Resource: Atlan - Data Contracts](https://atlan.com/data-contracts/)
+
+## Tool
+### Features
 - Parses YAML data contracts.
 - Generates SVG files with formatted and readable content.
 - Supports section headers, bullets, and text wrapping for long descriptions.
 
-## Purpose
+### Purpose
 Enables data contracts to be defined in .yaml for easy usability within a codebase, while allowing for the conversion of those contracts to more client-friendly for shareout, validation, and buy-in.
 
-## Directory Structure
+### Directory Structure
 ```
 data-contract-generator/
 ├── main.go
@@ -31,7 +69,7 @@ data-contract-generator/
     └── devcontainer.json
 ```
 
-## Usage
+### Build
 
 1. **Clone the repository**:
     ```sh
@@ -48,7 +86,7 @@ data-contract-generator/
     go build -o data-contract-generator main.go
     ```
     
-## Usage
+### Use
 
 1. **Source your YAML files**:
    - Place your YAML files in any directory of your choice.
@@ -60,8 +98,8 @@ data-contract-generator/
 
    - This will generate SVG files in the same directory as the YAML files.
 
-## Example
-### Input YAML
+### Example
+#### Input YAML
 Here is an example of a YAML data contract:
 
 ```yaml
@@ -101,12 +139,12 @@ security_classification: confidential
 version: 1.0
 ```
 
-### SVG Output:
+#### SVG Output:
 This will generate an SVG file named with the content formatted for readability
 
 ![Example Output](/static/contract.png)
 
-## Development Environment
+### Development Environment
 
 This project includes a development environment configuration for Visual Studio Code with Docker.
 
@@ -114,7 +152,7 @@ This project includes a development environment configuration for Visual Studio 
    - Open the project in Visual Studio Code.
    - Use the "Remote - Containers" extension to open the project in a container.
 
-## Contributing
+### Contributing
 
 1. **Fork the repository**.
 2. **Create a new branch**:
@@ -132,6 +170,6 @@ This project includes a development environment configuration for Visual Studio 
     ```
 6. **Create a Pull Request**.
 
-## License
+### License
 
 This project is licensed under the MIT License.
