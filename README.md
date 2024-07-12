@@ -39,11 +39,15 @@ data-contract-generator/
     cd data-contract-generator
     ```
 
-2. **Build the binary**:
+2. **Open in Devcontainer (if Go is not installed locally)**:
+    - Open the project in Visual Studio Code.
+    - Use the "Remote - Containers" extension to open the project in a container.
+
+3. **Build the binary**:
     ```sh
     go build -o data-contract-generator main.go
     ```
-
+    
 ## Usage
 
 1. **Source your YAML files**:
