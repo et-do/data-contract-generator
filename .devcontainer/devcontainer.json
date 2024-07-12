@@ -1,0 +1,32 @@
+{
+    "name": "Go Development Environment",
+    "context": "..",
+    "dockerFile": "Dockerfile",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "go.useLanguageServer": true,
+                "go.formatTool": "goimports",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                },
+                "go.lintTool": "golint",
+                "go.lintFlags": ["--fast"]
+            },
+            "extensions": [
+                "golang.Go",
+                "ms-vscode.cpptools",
+                "eamodio.gitlens",
+                "premparihar.gotestexplorer",
+                "jock.svg"
+            ]
+        }
+    },
+    "postCreateCommand": "go mod tidy",
+    "remoteUser": "root",
+    "workspaceFolder": "/workspace"
+}

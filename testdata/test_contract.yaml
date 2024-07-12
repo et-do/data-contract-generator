@@ -1,0 +1,34 @@
+name: Customer Data Contract
+date: 2024-07-12
+data_source: CRM System
+table_name: customer_data
+expected_schema:
+  - name: customer_id
+    type: STRING
+  - name: first_name
+    type: STRING
+  - name: last_name
+    type: STRING
+  - name: email
+    type: STRING
+  - name: phone_number
+    type: STRING
+  - name: signup_date
+    type: DATE
+  - name: last_purchase_date
+    type: DATE
+  - name: total_spent
+    type: FLOAT
+frequency: daily
+PII_sensitive: true
+description: >
+  This data contract specifies the schema and properties for the customer data
+  collected from the CRM system. The data includes personal identifiable
+  information (PII) and is updated daily.
+contact_person:
+  name: Jane Doe
+  email: jane.doe@example.com
+  phone: "+1-555-123-4567"
+data_retention_policy: 3 years
+security_classification: confidential
+version: 1.0
